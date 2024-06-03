@@ -163,7 +163,7 @@ export const register = catchAsyncErrors(async (req, res, next) => {
   
 
   export const logout = catchAsyncErrors((req, res, next) => {
-    res
+     res
       .status(200)
       .cookie("token", "", {
         expires: new Date(Date.now()),

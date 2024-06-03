@@ -10,7 +10,7 @@ myProfile
 const  router = express.Router() ; 
 
 router.post("/login" , login);
-router.get("/logout" , isAuthenticated  , logout);
+router.get("/logout" ,  isAuthenticated  , logout);
 router.get("/me" , isAuthenticated  , myProfile);
 router.post("/register" , register);
 
