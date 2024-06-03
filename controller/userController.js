@@ -4,6 +4,7 @@ import { User } from "../models/userSchema.js";
 import cloudinary from 'cloudinary'
 import  {sendToken} from "../utils/jwttoken.js"
 import {isAuthenticated} from "../middlewares/auth.js"
+import bcrypt from "bcrypt"
 
 // REGISTRATION FORM // 
 
@@ -150,7 +151,8 @@ export const register = catchAsyncErrors(async (req, res, next) => {
     if (!user) {
       return next(new ErrorHandler("Invalid email  or password!", 400));
     }
-    const isPasswordMatched = await user.comparePassword(password);
+    // const isPasswordMatched = await user.comparePassword(password);
+    const isPasswordMatched = await bcrypt.compare(password, user.password);
     if (!isPasswordMatched) {
       return next(new ErrorHandler("Invalid email  or password!", 400));
     }
